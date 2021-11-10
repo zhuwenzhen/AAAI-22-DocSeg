@@ -1,0 +1,113 @@
+
+
+% ruled 是让标题显示在上面，否则算法的标题则在下面。
+% linesnumbered 让算法中显示行号。
+% 还可以添加 boxed， 让算法排版时插入在一个盒子里。
+
+\def\SetClass{article}
+
+
+
+\documentclass{\SetClass}
+\usepackage{multirow}
+\usepackage[lined, boxed,commentsnumbered]{algorithm2e}
+\begin{document}
+
+\begin{algorithm}[H]
+  \SetAlgoLined
+  \KwData{this text}
+  \KwResult{how to write algorithm with \LaTeX2e }
+
+  initialization\;
+  \While{not at end of this document}{
+    read current\;
+    \eIf{understand}{
+      go to next section\;
+      current section becomes this one\;
+      }{
+      go back to the beginning of current section\;
+      }
+    }
+  \caption{How to write algorithms}
+\end{algorithm}
+
+
+%% Put in Appendix
+The following procedures implement this idea. BuildIndexMapping returns a tuple of indexMap, indexMapReverse, bboxesABCD given a list of bboxesXYXY.
+
+\begin{algorithm}[H]
+  \SetAlgoLined
+  \KwData{A list of bounding boxes $B_{xyxy}$}
+  \KwResult{a tuple of index map $M$, index map reverse $M^{*}$, a list of bounding boxes $B_{abcd}$}
+  $n \leftarrow len(B_{xyxy}) $ \;
+  $M = \phi $ \;
+  $M^* = \phi $ \;
+  $nodeId \leftarrow 0 $ \;
+  \For{$i\leftarrow 0$ \KwTo $n-1$}{
+    \For{$j\leftarrow 0$ \KwTo $3$}{
+        $M[i] \leftarrow (i, k)$ \;
+        $M[(i,k)] \leftarrow nodeId $\;
+        $nodeId ++ $\;
+    }
+  }
+  \caption{Build Index Mapping: need to build a mapping to map the index to the (i, j) 2d index, and also an inverse map to map it back}
+\end{algorithm}
+
+
+\begin{algorithm}[H]
+  \SetAlgoLined
+  \caption{For any vertices within $r$, we replace it with the centroid of the clustering}
+  \KwData{A list of bounding boxes $B_{xyxy}$, a threshold $r$ }
+  \KwResult{Calibrated bounding boxes $B^{*}_{xyxy}$}
+  $G \leftarrow UndirectedGraph(bboxes, r)$ \;
+  connected components $C \leftarrow UnionFind(G)$\;
+  $(M, M^*, B_{abcd}) \leftarrow  indexMap(B_{xyxy}) $\;
+  \For {$c \in C$} {
+    $cluster = \phi$ \;
+    \For {$n_k \in c$} {
+        $(i, j) \leftarrow M[n_k] $\;
+        $coord \leftarrow B_{abcd}[i][j] $ \;
+        $clustercoords $
+        
+    }
+  }
+\end{algorithm}
+
+% TODO: FINISH THE ALGORITHM
+% TODO: Add a visual illustration
+
+% \begin{algorithm}
+% \caption{Clustering Bboxes Vertices}\label{alg:cbv}
+% \begin{algorithmic}
+
+% \State $G \gets UndirectedGraph(bboxes, r)$
+% \State $C \gets UnionFind(G)$
+% \For{$indexSet\in C$} 
+%     \For{$index in indexSet$} 
+%     \State $cluster \gets {C}$
+% \end{algorithmic}
+% \end{algorithm}
+
+
+% Please add the following required packages to your document preamble:
+
+\begin{table}[]
+\begin{tabular}{c|c|c|c|c|c|c}
+\toprule
+\textbf{methods}          & \textbf{backbone}         & \textbf{\begin{tabular}[c]{@{}c@{}}post\\processing\end{tabular}}  & \textbf{\begin{tabular}[c]{@{}c@{}}edit\\distance\end{tabular}}  & \textbf{\begin{tabular}[c]{@{}c@{}}read \\ order\end{tabular}} & \textbf{recall} & \textbf{\begin{tabular}[c]{@{}c@{}}time\\\end{tabular}} \\ \hline
+
+\multirow{6}{*}{MaskRCNN}  & \multirow{2}{*}{R101-FPN} & heuristic                                                          & 0.42                                                             & 0.68                                                           & 0.86            & 8.25                                                            \\
+                          &                           & geometric                                                          & 0.44                                                             & 0.73                                                           & 0.85            & 6.41                                                            \\
+                          & \multirow{2}{*}{R50-FPN}  & heuristic                                                          & 0.43                                                             & 0.77                                                           & 0.73            & 7.36                                                            \\
+                          &                           & geometric                                                          & 0.46                                                             & 0.81                                                           & 0.72            & 4.90                                                            \\
+                          & \multirow{2}{*}{R50-DC5}  & heuristic                                                          & 0.52                                                             & 0.7                                                            & 0.86            & 7.74                                                            \\
+                          &                           & geometric                                                          & 0.55                                                             & 0.84                                                           & 0.77            & 4.84     \\                              
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+
+\end{document}
+
+ 
