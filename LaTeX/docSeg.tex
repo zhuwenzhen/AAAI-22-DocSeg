@@ -162,11 +162,11 @@
 \title{\title{DocBed: A Multi-Stage OCR Solution for Documents with Complex Layouts}}
 \author {
     % Authors
-    Wenzhen Zhu,\textsuperscript{\rm 1}
-    Negin Sokhandan, \textsuperscript{\rm 1}
-    Guang Yang, \textsuperscript{\rm 1}
-    Sujitha Martin, \textsuperscript{\rm 1}
-    Suchitra Sathyanarayana \textsuperscript{\rm 1}
+    Wenzhen Zhu\textsuperscript{\rm 1},
+    Negin Sokhandan\textsuperscript{\rm 1},
+    Guang Yang\textsuperscript{\rm 1},
+    Sujitha Martin\textsuperscript{\rm 1},
+    Suchitra Sathyanarayana\textsuperscript{\rm 1}
 }
 \affiliations {
     % Affiliations
@@ -311,7 +311,7 @@ Table 1 summarizes the number of instance each category appears in the NewsNet7 
 %The Amazon DocNet dataset contains 7 common object categories with x of them having more than y labeled instances, Fig. (insert here). In total the dataset has xxx labled instances in yyy images. In contrast to the PRImA datasets, Amazon DocNet has fewer categories but more instances per category. This can aid in learning detailed object models capable of precise 2D localization. 
 
 \paragraph{RDCL2019 (ICDAR2019 Competition on Recognition of Documents with Complex Layouts)}
-The NewsNet7 dataset does not include a text ground truth which requires an extensive manual labor. In order to evaluate the impact of the layout segmentation algorithms on the downstream OCR results, the RDCL2019 layout analysis dataset's \cite{DBLP:conf/icdar/ClausnerAP19} example set  is used, which includes 15 representative images with ground truth elements in XML format. It is important to note that these images are from contemporary documents such as magazines and they are only used to evaluate OCR performance. However, considering the fact that the layouts of these images are very different from historical newspapers, applying page segmentation models on this dataset as part of the process to obtain OCR results helps to assess their generalization capability.
+The NewsNet7 dataset does not include a text ground truth which requires an extensive manual labor. In order to evaluate the impact of the layout segmentation algorithms on the downstream OCR results, the RDCL2019 layout analysis dataset's \cite{DBLP:conf/icdar/ClausnerAP19} example set is used, which includes 15 representative images with ground truth elements in XML format. It is important to note that these images are from contemporary documents such as magazines and they are only used to evaluate OCR performance. However, considering the fact that the layouts of these images are very different from historical newspapers, applying page segmentation models on this dataset as part of the process to obtain OCR results helps to assess their generalization capability.
  
 %------------------------------------------------------------------------
 
@@ -385,7 +385,7 @@ and they are randomly combined into batches of 20 samples to be fed into the neu
 \subsubsection{Mask R-CNN}
 % Since for a given newspaper page, the OCR engine's direct input is a set of multiple cropped image segments and our NewsNet-7 is designed to represent each region as a rectangle, cropping a document with respect to its layout is naturally an instance segmentation problem. 
 % The final bounding boxes could be disastrous when two adjacent column regions sharing a few connected pixels and it's not easy to disconnect them with morphological operations for it's rule-based method, meaning the parameters are correlated with the image resolution and pixel intensities. Hence, we natually adopted 
-Mask R-CNN ~\cite{DBLP:conf/iccv/HeGDG17} is a widely-used state-of-art approach for instance segmentation. Since Mask R-CNN model predicts both bounding boxes and semantic masks, this approach saves us a significant extra effort to obtain bounding boxes for OCR engine. Futhermore, all the rest segmentation methods discussed in this paper require morphological processes and labeling components to convert the semantic mask into bounding boxes. Moreover, the semantic mask from Mask R-CNN could be either polygon, which would also work for layout contains more complex shape that rectangles could not represent.
+Mask R-CNN ~\cite{DBLP:conf/iccv/HeGDG17} is a widely-used state-of-art approach for instance segmentation. Since Mask R-CNN model predicts both bounding boxes and semantic masks, this approach saves us a significant extra effort to obtain bounding boxes for OCR engine. Furthermore, all the rest segmentation methods discussed in this paper require morphological processes and labeling components to convert the semantic mask into bounding boxes. Moreover, the semantic mask from Mask R-CNN could be either polygon, which would also work for layout contains more complex shape that rectangles could not represent.
 The Detectron2 framework ~\cite{wu2019detectron2} provides an extensive collection of baseline models including Mask R-CNN that makes experimenting with this model a fast and friction-less process.
 
 In this work, we used two different backbone structures in the architecture of Mask R-CNN: the first backbone is a Residual Networks (ResNet) combined with a feature pyramid network (FPN) structure that uses standard convolutional and fully connected heads for feature extraction. The second structure, Dilated-C5 (DC5), is a ResNet conv5 backbone with dilation in conv5 and convolutional and fully connected heads for mask and bounding box prediction.
@@ -556,7 +556,7 @@ To accomplish the second purpose, bounding boxes that are vertically aligned wit
 
 %------------------------------------------------------------------------
 \section{Experimental Results}
-In this work, two different types of evaluation experiments have been conducted: isolated layout segmentation evaluation and end-to-end OCR evaluation. For all the models, the checkpoint correspondeding to the best performance on the validation set was used for the experiments.
+In this work, two different types of evaluation experiments have been conducted: isolated layout segmentation evaluation and end-to-end OCR evaluation. For all the models, the checkpoint corresponding to the best performance on the validation set was used for the experiments.
 % For all of the experiments in this section, the models were trained on either single or multiple NVIDIA V100 Tensor Core GPU with 61 GiB of memory.\\
 \subsection{Layout Segmentation Evaluation}
 
