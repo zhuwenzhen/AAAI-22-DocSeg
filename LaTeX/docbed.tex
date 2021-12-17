@@ -380,7 +380,7 @@ and they are randomly combined into batches of 20 samples to be fed into the neu
 
 \begin{figure*}[h]
    \centering
-   \includegraphics[width=\linewidth]{LaTeX/Figures/work.pdf}
+   \includegraphics[width=\linewidth]{LaTeX/Figures/work-compressed.pdf}
    \caption{Comparison of example page layout segmentation results}
    \label{fig:all_vis}
  \end{figure*}
@@ -676,7 +676,7 @@ In the previous ICDAR Page Segmentation competitions, PAGE format representation
 \begin{itemize}
     % For the shown example, only 1 block out of 29 blocks is out of order, therefore the read order accuracy is 0.96.
     \item \textbf{Edit distance:} The edit distance is a common similarity measure between two strings. It is defined as the minimum number of insertions, deletions or substitutions needed to transform one string to the other one.
-    \item \textbf{Segment read order accuracy:} For newspaper digitization, maintaining proper read order is an essential factor. To evaluate this quality, a read order accuracy (ROA) metric is introduced as $ROA = 1 - m / n$, where $m$ is number of blocks out of order, and $n$ is total number of blocks; hence the higher the value (meaning more segments are in correct read order) the better. After each segment's matching interval is found in ground truth, the segments are sorted by their starting position to obtain the block order.
+    \item \textbf{Segment read order accuracy:} For newspaper digitization, maintaining proper read order is an essential factor. To evaluate this quality, a read order accuracy (ROA) metric is introduced as $ROA = 1 - m / n$, where $m$ is number of blocks out of order, and $n$ is total number of blocks; hence the higher the value (meaning more segments are in correct read order), the better. After each segment's matching interval is found in ground truth, the segments are sorted by their starting position to obtain the block order.
     % We calculated the edit distance between the OCR results and the ground truth texts to evaluate the OCR results.
     %  We propose a weighted edit distance to measure the whole page's OCR accuracy. Suppose a page has $N$ characters in ground truth's plain texts. Our segmentation model will divide such page into $m$ segments or blocks using our bounding boxes, each block $b_i$ has 2 pair of strings: predicted string from OCR engine: $S_{i, 1}$ and ground truth string: $S_{i,2}$ which contains $n_i$ number of characters. The usual edit-distance returns the number of mistaken characters between string $s_1$ and $s_2$, and $e =$ edit-distance$(S_{i, 1}, S_{i, 2})$ and error percentage score:  $score_{i} = e_{i}/ n_{i}$.  (Add corner case here). So we can assign a weight for  the whole page: $p_e ={score}_i= \sum _{i=1}^m w_i \cdot \frac{e_i}{n_i} $ where $w_i = \frac{n_i}{N}$
     \item \textbf{Word recall:} Word recall computes the percentage of words in ground truth that are correctly represented in the predicted text. The exact matches for uni-grams are counted, i.e.  each word is counted up to the number of times it appears in the ground truth. 
